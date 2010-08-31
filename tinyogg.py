@@ -44,6 +44,10 @@ def main():
     if len(sys.argv) > 1:
         for url in sys.argv[1:]:
             print convert(url)
+        return
+    else:
+        print "Se debe pasar las urls como argumento"
+        return 1
 
 
 
