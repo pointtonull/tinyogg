@@ -33,7 +33,7 @@ def convert(originalurl, log=True):
 
     match = re.search(RESULTREGEX, browser.get_html())
     if match:
-        return match(1)
+        return match.group(1)
     
     for match in re.finditer(URLREGEX, browser.get_html()):
         if RESULT in match.group():
