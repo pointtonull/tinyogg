@@ -12,6 +12,7 @@ LOGFILE = os.path.expanduser('''~/.tinyogg''')
 RESULT = '''http://tinyogg.com/watch/'''
 RESULTREGEX = r'''href="/watch/(.*?)/"'''
 
+
 class Get_browser(object):
     def __init__(self):
         self.browser = None
@@ -21,6 +22,7 @@ class Get_browser(object):
             self.browser = BROWSER()
 
         return self.browser
+
 
 def convert(originalurl, log=True):
     browser = get_browser()
@@ -33,7 +35,7 @@ def convert(originalurl, log=True):
 
     match = re.search(RESULTREGEX, browser.get_html())
     if match:
-        return match.group(1)
+        return match.group()
     
     for match in re.finditer(URLREGEX, browser.get_html()):
         if RESULT in match.group():
