@@ -1,10 +1,16 @@
 <?xml version="1.0"?>
 <todo version="0.1.20">
+    <note priority="high" time="1283415561">
+        Implement cache
+    </note>
     <note priority="medium" time="1283244594">
         Implement log
     </note>
     <note priority="medium" time="1283244637">
         Add wait feature (dont quit until the video was converted)
+    </note>
+    <note priority="medium" time="1283415612">
+        Implement high quality option
     </note>
     <note priority="low" time="1283244673">
         Remove superfluous dependencies

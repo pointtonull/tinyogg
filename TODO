@@ -1,3 +1,5 @@
-  1.Implement log
-  2.Add wait feature (dont quit until the video was converted)
-  3.Remove superfluous dependencies
+  1.Implement cache
+  2.Implement log
+  3.Add wait feature (dont quit until the video was converted)
+  4.Implement high quality option
+  5.Remove superfluous dependencies
