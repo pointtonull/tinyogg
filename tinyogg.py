@@ -4,24 +4,13 @@
 import re
 import os
 import sys
-from browser import BROWSER
+from browser import get_browser
 
 URLREGEX = r'''(?i)(?:http|ftp)s?://[]:/?#@!$&'()*+,;=A-z\d\-._~%[]*'''
 URLSERVICE = '''http://tinyogg.com/add?url=%s&type=video&hidden=true'''
 LOGFILE = os.path.expanduser('''~/.tinyogg''')
 RESULT = '''http://tinyogg.com/watch/'''
 RESULTREGEX = r'''href="/watch/(.*?)/"'''
-
-
-class Get_browser(object):
-    def __init__(self):
-        self.browser = None
-
-    def __call__(self):
-        if self.browser is None:
-            self.browser = BROWSER()
-
-        return self.browser
 
 
 def convert(originalurl, log=True):
@@ -35,7 +24,7 @@ def convert(originalurl, log=True):
 
     match = re.search(RESULTREGEX, browser.get_html())
     if match:
-        return match.group()
+        return RESULT + match.group(1)
     
     for match in re.finditer(URLREGEX, browser.get_html()):
         if RESULT in match.group():
@@ -54,5 +43,4 @@ def main():
 
 
 if __name__ == "__main__":
-    get_browser = Get_browser()
     exit(main())
