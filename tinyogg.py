@@ -4,6 +4,7 @@
 import re
 import os
 import sys
+from optparse import OptionParser, OptionValueError
 from browser import get_browser
 
 URLREGEX = r'''(?i)(?:http|ftp)s?://[]:/?#@!$&'()*+,;=A-z\d\-._~%[]*'''
@@ -32,6 +33,31 @@ def convert(originalurl, log=True):
 
 
 def main():
+    # Instance the parser and define the usage message
+    parser = OptionParser(usage="""
+    %prog [-hwqv] urltoflashvideo""", version="%prog .1")
+
+    # Define the options and the actions of each one
+    parser.add_option("-v", "--verbose", action="count", dest="verbose",
+        help="increase verbosity of the output")
+    parser.add_option("-q", "--quiet", action="count", dest="quiet",
+        help="decrease verbosity of the output")
+    parser.add_option("-H", "--highquality", action="store_true", dest="hq",
+        help="try to conver the higest quality avaiable version")
+    parser.add_option("-w", "--wait", action="store_true", dest="wait",
+        help="dont quit until the video was converted")
+
+    # Define the default options
+    parser.set_defaults(
+        verbose=2,
+        quiet=0,
+        hq=False,
+        wait=False,
+    )
+
+    # Process the options
+    opts, args = parser.parse_args()
+
     if len(sys.argv) > 1:
         for url in sys.argv[1:]:
             print convert(url)
